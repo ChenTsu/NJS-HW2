@@ -1,0 +1,22 @@
+{
+  "name": "gb-njs-hw2",
+  "version": "1.0.0",
+  "description": "Geekbrains Node.js homework 2",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChenTsu/NJS-HW2.git"
+  },
+  "author": "ChenTsu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChenTsu/NJS-HW2/issues"
+  },
+  "homepage": "https://github.com/ChenTsu/NJS-HW2#readme",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
