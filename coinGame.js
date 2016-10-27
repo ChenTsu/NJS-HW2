@@ -3,6 +3,7 @@
  */
 
 var doLog = false;
+var logFile='./logs/coinGameLog';
 // var argc = process.argv.length;
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
@@ -17,7 +18,8 @@ if ( argv.help /*|| argc<2*/) {
     rl.close();
 }
 else {
-    if(argv._[0]) doLog=true;
+    if (argv.log) doLog=true;
+    if(argv._[0]){ doLog=true; logFile=argv._[0];}
 
     rl.write('Угадайте какой стороной упадёт монета.\nВведите 1(орёл) или 2(решка). 0 - выход из программы.\n');
 
@@ -32,7 +34,7 @@ else {
                 console.log('Вы не угадали.');
 
             if ( doLog )
-                fs.appendFile(argv._[0],coin+','+inpt+',',function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;});
+                fs.appendFile(logFile,coin+','+inpt+',',function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;});
         }
 
         if (inpt===0)

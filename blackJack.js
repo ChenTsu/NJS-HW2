@@ -7,6 +7,9 @@ var rl=readline.createInterface({
 	output: process.stdout
 });
 
+var doLog = false;
+var logFile='./logs/blackJackGameLog';
+
 function getCard (  )
 {
 	//функция возвращает случайную карту из массива
@@ -99,6 +102,9 @@ if ( argv.help /*|| argc<2*/) {
 	rl.close();
 }
 else {
+	if (argv.log) doLog=true;
+	if(argv._[0]){ doLog=true; logFile=argv._[0];}
+
 	// получаем первые карты
 	var dealerCards = [];
 	var playerCards = [];
@@ -143,10 +149,10 @@ else {
 				console.log(handStatus() + "\nОчков поровну. Никто не выиграл.");
 			}
 		}
-		if(argv._[0]) {
-			if ( fs.statSync(argv._[0]).size>0 )
-				fs.appendFileSync(argv._[0],',');
-			fs.appendFileSync(argv._[0], dealerCards.join(' ') + ',' + playerCards.join(' ') /*,function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;}*/);
+		if(doLog) {
+			if ( fs.statSync(logFile).size>0 )
+				fs.appendFileSync(logFile,',');
+			fs.appendFileSync(logFile, dealerCards.join(' ') + ',' + playerCards.join(' ') /*,function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;}*/);
 		}
 		moreGame = 1 === Number(syncprompt("\nХотите играть ещё раз? (1 - играть ещё, что-либо другое - нет). "));
 	}
