@@ -32,7 +32,7 @@ else {
                 console.log('Вы не угадали.');
 
             if ( doLog )
-                fs.appendFile(argv._[0],coin+','+inpt+','+(inpt===coin)+',',function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;});
+                fs.appendFile(argv._[0],coin+','+inpt+',',function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;});
         }
 
         if (inpt===0)
