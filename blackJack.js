@@ -102,7 +102,11 @@ if ( argv.help /*|| argc<2*/) {
 	rl.close();
 }
 else {
-	if (argv.log) doLog=true;
+	if (argv.log){
+		doLog=true;
+		if ( !fs.statSync('./logs').isDirectory())
+			fs.mkdir('./logs',function (err) {if (err)throw 'Не могу создать директорию: '+err;});
+	}
 	if(argv._[0]){ doLog=true; logFile=argv._[0];}
 
 	// получаем первые карты

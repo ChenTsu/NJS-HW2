@@ -14,11 +14,15 @@ var rl=readline.createInterface({
 });
 
 if ( argv.help /*|| argc<2*/) {
-    rl.write('\tUsage:\tnode coinGame.js [LogFile]\n\tWhere:\tLogFile - path to log file.');
+    rl.write('\tUsage:\tnode coinGame.js [--log] [LogFile]\n\tWhere:\t --log - Writes logging information into a default file ./logs/coinGameLog\n\tLogFile - Writes logging information into a logfile at the specified LogFile path (in this case --log option is not necessary)');
     rl.close();
 }
 else {
-    if (argv.log) doLog=true;
+    if (argv.log){
+        doLog=true;
+        if ( !fs.statSync('./logs').isDirectory())
+            fs.mkdir('./logs',function (err) {if (err)throw 'Не могу создать директорию: '+err;});
+    }
     if(argv._[0]){ doLog=true; logFile=argv._[0];}
 
     rl.write('Угадайте какой стороной упадёт монета.\nВведите 1(орёл) или 2(решка). 0 - выход из программы.\n');
@@ -33,8 +37,11 @@ else {
             else
                 console.log('Вы не угадали.');
 
-            if ( doLog )
-                fs.appendFile(logFile,coin+','+inpt+',',function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;});
+            if ( doLog ) {
+                fs.appendFile(logFile, coin + ',' + inpt + ',', function (err) {
+                    if (err) throw 'Не могу открыть для записи файл: ' + err;
+                });
+            }
         }
 
         if (inpt===0)
