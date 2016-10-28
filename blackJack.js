@@ -154,8 +154,10 @@ else {
 			}
 		}
 		if(doLog) {
-			if ( fs.statSync(logFile).size>0 )
-				fs.appendFileSync(logFile,',');
+			if ( fs.existsSync(logFile) ) {
+				if (fs.statSync(logFile).size > 0)
+					fs.appendFileSync(logFile, ',');
+			}
 			fs.appendFileSync(logFile, dealerCards.join(' ') + ',' + playerCards.join(' ') /*,function (err) {if (err) throw 'Не могу открыть для записи файл: '+err;}*/);
 		}
 		moreGame = 1 === Number(syncprompt("\nХотите играть ещё раз? (1 - играть ещё, что-либо другое - нет). "));
