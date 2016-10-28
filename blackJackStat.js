@@ -29,7 +29,7 @@ else {
     for ( var j=0; j<logs.length; j+=2)
     {
         var dealerSum=getSumCards(logs[j].replace(/[\r\n]/g,'').split(' '));
-        var playerSum=getSumCards(logs[j+1].split(' '));
+        var playerSum=getSumCards(logs[j+1].replace(/[\r\n]/g,'').split(' '));
 
         if (playerSum > 21) {
             losses++;
