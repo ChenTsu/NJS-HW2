@@ -10,7 +10,7 @@ var wins=0;
 // var losses=0;
 
 if ( argv.help ) {
-    console.log('\tUsage:\tnode coinGameStat.js LogFile\n\tWhere:\tLogFile - path to the log file for analysis');
+    console.log('\tUsage:\tnode coinGameStat.js [LogFile]\n\tWhere:\tLogFile - path to the log file for analysis.\n\tIf the logFile is not specified uses ./logs/coinGameLog');
     process.exit();
 }
 else {
